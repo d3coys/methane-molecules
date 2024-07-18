@@ -8,10 +8,11 @@
         body { margin: 0; }
         canvas { display: block; }
     </style>
-    <!-- Importing Three.js and OrbitControls as modules -->
+</head>
+<body>
     <script type="module">
-        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js';
-        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/controls/OrbitControls.js';
+        import * as THREE from 'https://unpkg.com/three@0.128.0/build/three.module.js';
+        import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 
         // Basic Three.js setup
         const scene = new THREE.Scene();
@@ -92,7 +93,5 @@
         }
         animate();
     </script>
-</head>
-<body>
 </body>
 </html>
