@@ -42,15 +42,15 @@ hydrogenPositions.forEach(pos => {
     hydrogen.castShadow = true;
     scene.add(hydrogen);
 
-    const bondGeometry = new THREE.CylinderGeometry(0.1, 0.1, 3, 32);
+    const bondGeometry = new THREE.CylinderGeometry(0.1, 0.1, 2.5, 32);
     const bondMaterial = new THREE.MeshLambertMaterial({ color: 0xFFFFFF });
     const bond = new THREE.Mesh(bondGeometry, bondMaterial);
     
     const bondPosition = new THREE.Vector3(...pos).add(carbon.position).multiplyScalar(0.5);
     bond.position.set(bondPosition.x, bondPosition.y, bondPosition.z);
     bond.lookAt(carbon.position);
+    
     bond.rotateX(Math.PI / 2);
-
     bond.castShadow = true;
     scene.add(bond);
 });
