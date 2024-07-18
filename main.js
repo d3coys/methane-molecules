@@ -6,7 +6,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0xaaaaaa);
+renderer.setClearColor(0x000000); // Set background color to black
 renderer.shadowMap.enabled = true;
 document.body.appendChild(renderer.domElement);
 
@@ -74,11 +74,13 @@ camera.position.set(0, 6, 12); // Adjust the camera position for a better view
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
+controls.enableZoom = false; // Disable zooming
 controls.target.set(0, 4, 0); // Set target to the center of the molecule group
 
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
+    moleculeGroup.rotation.y += 0.01; // Rotate the molecule group
     controls.update();
     renderer.render(scene, camera);
 }
