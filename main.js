@@ -21,7 +21,7 @@ scene.add(pointLight);
 
 // Group to hold the molecules
 const moleculeGroup = new THREE.Group();
-moleculeGroup.position.y = 6; // Raise the whole group higher above the plane
+moleculeGroup.position.y = 4.5; // Raise the whole group higher above the plane
 scene.add(moleculeGroup);
 
 // Create the carbon atom
@@ -69,7 +69,7 @@ scene.add(plane);
 
 // Position the camera closer to the molecules and a bit lower
 camera.position.set(0, 4, 8); // Adjust the camera position closer to the molecules and lower
-camera.lookAt(0, 6, 0); // Ensure the camera looks at the molecule group
+camera.lookAt(0, 4.5, 0); // Ensure the camera looks at the molecule group
 
 // Custom controls to rotate the molecule group when the mouse or touch moves
 let isInteracting = false;
