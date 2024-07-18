@@ -15,7 +15,7 @@ const ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
 const pointLight = new THREE.PointLight(0xffffff, 1);
-pointLight.position.set(10, 20, 10); // Adjust the light position for better shadow visibility
+pointLight.position.set(0, 15, 10); // Adjust the light position for better shadow visibility
 pointLight.castShadow = true;
 scene.add(pointLight);
 
