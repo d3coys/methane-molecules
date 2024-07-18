@@ -19,6 +19,7 @@
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setClearColor(0xaaaaaa);
+        renderer.shadowMap.enabled = true;
         document.body.appendChild(renderer.domElement);
 
         // Simple lighting
@@ -27,13 +28,24 @@
 
         const pointLight = new THREE.PointLight(0xffffff, 1);
         pointLight.position.set(10, 10, 10);
+        pointLight.castShadow = true;
         scene.add(pointLight);
 
         // Create a simple sphere to test
         const geometry = new THREE.SphereGeometry(1, 32, 32);
         const material = new THREE.MeshLambertMaterial({ color: 0xFF0000 });
         const sphere = new THREE.Mesh(geometry, material);
+        sphere.castShadow = true;
         scene.add(sphere);
+
+        // Add a green plane
+        const planeGeometry = new THREE.PlaneGeometry(20, 20);
+        const planeMaterial = new THREE.MeshLambertMaterial({ color: 0x00FF00 });
+        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        plane.rotation.x = -Math.PI / 2;
+        plane.position.y = -1;
+        plane.receiveShadow = true;
+        scene.add(plane);
 
         // Position the camera
         camera.position.z = 5;
