@@ -17,6 +17,15 @@ scene.add(ambientLight);
 const pointLight = new THREE.PointLight(0xffffff, 1);
 pointLight.position.set(0, 8, 0); // Position the light at the center top of the methane molecules
 pointLight.castShadow = true;
+
+// Adjust shadow camera settings
+pointLight.shadow.camera.near = 0.5;
+pointLight.shadow.camera.far = 50;
+pointLight.shadow.camera.left = -10;
+pointLight.shadow.camera.right = 10;
+pointLight.shadow.camera.top = 10;
+pointLight.shadow.camera.bottom = -10;
+
 scene.add(pointLight);
 
 // Group to hold the molecules
