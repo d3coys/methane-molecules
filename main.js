@@ -21,7 +21,7 @@ scene.add(pointLight);
 
 // Group to hold the molecules
 const moleculeGroup = new THREE.Group();
-moleculeGroup.position.y = 4; // Raise the whole group higher above the plane
+moleculeGroup.position.y = 3; // Raise the whole group higher above the plane
 scene.add(moleculeGroup);
 
 // Create the carbon atom
@@ -58,8 +58,8 @@ hydrogenPositions.forEach(pos => {
     moleculeGroup.add(bond);
 });
 
-// Add a green plane
-const planeGeometry = new THREE.PlaneGeometry(20, 20);
+// Add a green circular plane
+const planeGeometry = new THREE.CircleGeometry(10, 64);
 const planeMaterial = new THREE.MeshLambertMaterial({ color: 0x00FF00 });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = -Math.PI / 2;
