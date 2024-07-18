@@ -21,7 +21,7 @@ scene.add(pointLight);
 
 // Group to hold the molecules
 const moleculeGroup = new THREE.Group();
-moleculeGroup.position.y = 3; // Raise the whole group higher above the plane
+moleculeGroup.position.y = 4; // Raise the whole group higher above the plane
 scene.add(moleculeGroup);
 
 // Create the carbon atom
@@ -70,18 +70,41 @@ scene.add(plane);
 // Position the camera
 camera.position.set(0, 6, 12); // Adjust the camera position for a better view
 
-// Orbit controls
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.dampingFactor = 0.05;
-controls.enableZoom = false; // Disable zooming
-controls.target.set(0, 4, 0); // Set target to the center of the molecule group
+// Custom controls to rotate the molecule group when the mouse moves
+let isMouseDown = false;
+let prevMouseX = 0;
+let prevMouseY = 0;
+
+function onMouseDown(event) {
+    isMouseDown = true;
+    prevMouseX = event.clientX;
+    prevMouseY = event.clientY;
+}
+
+function onMouseMove(event) {
+    if (isMouseDown) {
+        const deltaX = event.clientX - prevMouseX;
+        const deltaY = event.clientY - prevMouseY;
+
+        moleculeGroup.rotation.y += deltaX * 0.01;
+        moleculeGroup.rotation.x += deltaY * 0.01;
+
+        prevMouseX = event.clientX;
+        prevMouseY = event.clientY;
+    }
+}
+
+function onMouseUp() {
+    isMouseDown = false;
+}
+
+document.addEventListener('mousedown', onMouseDown, false);
+document.addEventListener('mousemove', onMouseMove, false);
+document.addEventListener('mouseup', onMouseUp, false);
 
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
-    moleculeGroup.rotation.y += 0.01; // Rotate the molecule group
-    controls.update();
     renderer.render(scene, camera);
 }
 animate();
