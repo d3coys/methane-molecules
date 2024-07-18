@@ -14,16 +14,10 @@ document.body.appendChild(renderer.domElement);
 const ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
-const pointLight = new THREE.PointLight(0xffffff, 1, 50, 2); // Adjust the light properties
+const pointLight = new THREE.PointLight(0xffffff, 1);
 pointLight.position.set(0, 10, 0); // Position the light at the center top of the methane molecules
 pointLight.castShadow = true;
 scene.add(pointLight);
-
-// Additional light from the side
-const sideLight = new THREE.PointLight(0xffffff, 0.5, 30, 2); // Adjust the light properties
-sideLight.position.set(10, 5, 0); // Position the side light
-sideLight.castShadow = true;
-scene.add(sideLight);
 
 // Group to hold the molecules
 const moleculeGroup = new THREE.Group();
