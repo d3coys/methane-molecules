@@ -5,11 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Methane Molecule</title>
     <style>
-        body { margin: 0; }
-        canvas { display: block; }
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+            color: black;
+        }
+        #title {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 24px;
+            color: black;
+        }
+        canvas {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <script type="module" src="./main.js"></script>
+    <div id="title">Methane CH4</div>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
