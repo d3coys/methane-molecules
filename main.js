@@ -19,13 +19,17 @@ pointLight.position.set(10, 10, 10);
 pointLight.castShadow = true;
 scene.add(pointLight);
 
+// Group to hold the molecules
+const moleculeGroup = new THREE.Group();
+scene.add(moleculeGroup);
+
 // Create the carbon atom
 const carbonGeometry = new THREE.SphereGeometry(1, 32, 32);
 const carbonMaterial = new THREE.MeshLambertMaterial({ color: 0xFF0000 });
 const carbon = new THREE.Mesh(carbonGeometry, carbonMaterial);
 carbon.castShadow = true;
 carbon.position.y = 2; // Raise carbon atom higher above the plane
-scene.add(carbon);
+moleculeGroup.add(carbon);
 
 // Create the hydrogen atoms and bonds
 const hydrogenGeometry = new THREE.SphereGeometry(0.5, 32, 32);
@@ -42,7 +46,7 @@ hydrogenPositions.forEach(pos => {
     hydrogen.position.set(...pos);
     hydrogen.position.y += 2; // Raise hydrogen atoms higher above the plane
     hydrogen.castShadow = true;
-    scene.add(hydrogen);
+    moleculeGroup.add(hydrogen);
 
     const bondGeometry = new THREE.CylinderGeometry(0.1, 0.1, 3, 32);
     const bondMaterial = new THREE.MeshLambertMaterial({ color: 0xFFFFFF });
@@ -52,7 +56,7 @@ hydrogenPositions.forEach(pos => {
     bond.lookAt(carbon.position);
     bond.rotateX(Math.PI / 2);
     bond.castShadow = true;
-    scene.add(bond);
+    moleculeGroup.add(bond);
 });
 
 // Add a green plane
