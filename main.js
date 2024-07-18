@@ -15,7 +15,7 @@ const ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
 const pointLight = new THREE.PointLight(0xffffff, 1);
-pointLight.position.set(0, 10, 0); // Position the light at the center top of the methane molecules
+pointLight.position.set(0, 8, 0); // Position the light at the center top of the methane molecules
 pointLight.castShadow = true;
 scene.add(pointLight);
 
@@ -68,7 +68,7 @@ plane.receiveShadow = true;
 scene.add(plane);
 
 // Position the camera closer to the molecules and a bit lower
-camera.position.set(0, 4, 8); // Adjust the camera position closer to the molecules and lower
+camera.position.set(0, 3, 7); // Adjust the camera position closer to the molecules and lower
 camera.lookAt(0, 3, 0); // Ensure the camera looks at the molecule group
 
 // Custom controls to rotate the molecule group when the mouse or touch moves
