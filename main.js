@@ -21,6 +21,7 @@ scene.add(pointLight);
 
 // Group to hold the molecules
 const moleculeGroup = new THREE.Group();
+moleculeGroup.position.y = 2; // Raise the whole group above the plane
 scene.add(moleculeGroup);
 
 // Create the carbon atom
@@ -28,7 +29,6 @@ const carbonGeometry = new THREE.SphereGeometry(1, 32, 32);
 const carbonMaterial = new THREE.MeshLambertMaterial({ color: 0xFF0000 });
 const carbon = new THREE.Mesh(carbonGeometry, carbonMaterial);
 carbon.castShadow = true;
-carbon.position.y = 2; // Raise carbon atom higher above the plane
 moleculeGroup.add(carbon);
 
 // Create the hydrogen atoms and bonds
@@ -44,7 +44,6 @@ const hydrogenPositions = [
 hydrogenPositions.forEach(pos => {
     const hydrogen = new THREE.Mesh(hydrogenGeometry, hydrogenMaterial);
     hydrogen.position.set(...pos);
-    hydrogen.position.y += 2; // Raise hydrogen atoms higher above the plane
     hydrogen.castShadow = true;
     moleculeGroup.add(hydrogen);
 
@@ -64,7 +63,7 @@ const planeGeometry = new THREE.PlaneGeometry(20, 20);
 const planeMaterial = new THREE.MeshLambertMaterial({ color: 0x00FF00 });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = -Math.PI / 2;
-plane.position.y = -1; // Lower the plane to ensure molecules float above it
+plane.position.y = 0; // Keep the plane fixed at y = 0
 plane.receiveShadow = true;
 scene.add(plane);
 
@@ -75,12 +74,11 @@ camera.position.set(0, 5, 10); // Adjust the camera position for a better view
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.target.set(0, 2, 0); // Set target to the center of the molecule group
+controls.target = moleculeGroup.position;
 
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
-    moleculeGroup.rotation.y += 0.01; // Rotate the molecule group
     controls.update();
     renderer.render(scene, camera);
 }
