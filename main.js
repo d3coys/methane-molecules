@@ -1,5 +1,5 @@
-import * as THREE from 'https://unpkg.com/three@0.128.0/build/three.module.js';
-import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
+import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 
 // Basic Three.js setup
 const scene = new THREE.Scene();
