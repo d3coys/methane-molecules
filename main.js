@@ -68,8 +68,8 @@ plane.receiveShadow = true;
 scene.add(plane);
 
 // Position the camera to show the shadow in the center of the green plane
-camera.position.set(0, 12, 20); // Adjust the camera position for a better view of the shadow
-camera.lookAt(0, 0, 0); // Ensure the camera looks at the center of the scene
+camera.position.set(0, 10, 15); // Adjust the camera position for a better view of the shadow
+camera.lookAt(0, 4, 0); // Ensure the camera looks at the molecule group
 
 // Custom controls to rotate the molecule group when the mouse or touch moves
 let isInteracting = false;
