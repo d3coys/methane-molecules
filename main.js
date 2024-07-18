@@ -15,13 +15,13 @@ const ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
 const pointLight = new THREE.PointLight(0xffffff, 1);
-pointLight.position.set(10, 10, 10);
+pointLight.position.set(10, 20, 10); // Adjust the light position for better shadow visibility
 pointLight.castShadow = true;
 scene.add(pointLight);
 
 // Group to hold the molecules
 const moleculeGroup = new THREE.Group();
-moleculeGroup.position.set(0, 4.5, 0); // Center the group and raise it above the plane
+moleculeGroup.position.set(0, 6, 0); // Center the group and raise it above the plane
 scene.add(moleculeGroup);
 
 // Create the carbon atom
@@ -67,8 +67,9 @@ plane.position.set(0, 0, 0); // Center the plane
 plane.receiveShadow = true;
 scene.add(plane);
 
-// Position the camera closer to the molecules and a bit lower
-camera.position.set(0, 4, 8); // Adjust the camera position closer to the molecules and lower
+// Position the camera to show the shadow in the center of the green plane
+camera.position.set(0, 12, 20); // Adjust the camera position for a better view of the shadow
+camera.lookAt(0, 0, 0); // Ensure the camera looks at the center of the scene
 
 // Custom controls to rotate the molecule group when the mouse or touch moves
 let isInteracting = false;
