@@ -67,8 +67,8 @@ plane.position.y = 0; // Keep the plane fixed at y = 0
 plane.receiveShadow = true;
 scene.add(plane);
 
-// Position the camera
-camera.position.set(0, 6, 12); // Adjust the camera position for a better view
+// Position the camera closer to the molecules
+camera.position.set(0, 5, 8); // Adjust the camera position closer to the molecules
 
 // Custom controls to rotate the molecule group when the mouse moves
 let isMouseDown = false;
