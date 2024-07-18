@@ -19,6 +19,12 @@ pointLight.position.set(0, 10, 0); // Position the light at the center top of th
 pointLight.castShadow = true;
 scene.add(pointLight);
 
+// Additional light from the side
+const sideLight = new THREE.DirectionalLight(0xffffff, 0.5);
+sideLight.position.set(10, 5, 0); // Position the side light
+sideLight.castShadow = true;
+scene.add(sideLight);
+
 // Group to hold the molecules
 const moleculeGroup = new THREE.Group();
 moleculeGroup.position.y = 4.5; // Raise the whole group higher above the plane
@@ -85,7 +91,7 @@ function onPointerDown(event) {
 function onPointerMove(event) {
     if (isInteracting) {
         const currentX = event.clientX || event.touches[0].clientX;
-        const currentY = event.clientY || event.touches[0].clientY;
+        const currentY = currentX || event.touches[0].clientY;
         const deltaX = currentX - prevX;
         const deltaY = currentY - prevY;
 
