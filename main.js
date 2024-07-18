@@ -70,37 +70,42 @@ scene.add(plane);
 // Position the camera closer to the molecules and a bit lower
 camera.position.set(0, 4, 8); // Adjust the camera position closer to the molecules and lower
 
-// Custom controls to rotate the molecule group when the mouse moves
-let isMouseDown = false;
-let prevMouseX = 0;
-let prevMouseY = 0;
+// Custom controls to rotate the molecule group when the mouse or touch moves
+let isInteracting = false;
+let prevX = 0;
+let prevY = 0;
 
-function onMouseDown(event) {
-    isMouseDown = true;
-    prevMouseX = event.clientX;
-    prevMouseY = event.clientY;
+function onPointerDown(event) {
+    isInteracting = true;
+    prevX = event.clientX || event.touches[0].clientX;
+    prevY = event.clientY || event.touches[0].clientY;
 }
 
-function onMouseMove(event) {
-    if (isMouseDown) {
-        const deltaX = event.clientX - prevMouseX;
-        const deltaY = event.clientY - prevMouseY;
+function onPointerMove(event) {
+    if (isInteracting) {
+        const currentX = event.clientX || event.touches[0].clientX;
+        const currentY = event.clientY || event.touches[0].clientY;
+        const deltaX = currentX - prevX;
+        const deltaY = currentY - prevY;
 
         moleculeGroup.rotation.y += deltaX * 0.01;
         moleculeGroup.rotation.x += deltaY * 0.01;
 
-        prevMouseX = event.clientX;
-        prevMouseY = event.clientY;
+        prevX = currentX;
+        prevY = currentY;
     }
 }
 
-function onMouseUp() {
-    isMouseDown = false;
+function onPointerUp() {
+    isInteracting = false;
 }
 
-document.addEventListener('mousedown', onMouseDown, false);
-document.addEventListener('mousemove', onMouseMove, false);
-document.addEventListener('mouseup', onMouseUp, false);
+document.addEventListener('mousedown', onPointerDown, false);
+document.addEventListener('mousemove', onPointerMove, false);
+document.addEventListener('mouseup', onPointerUp, false);
+document.addEventListener('touchstart', onPointerDown, false);
+document.addEventListener('touchmove', onPointerMove, false);
+document.addEventListener('touchend', onPointerUp, false);
 
 // Animation loop
 function animate() {
