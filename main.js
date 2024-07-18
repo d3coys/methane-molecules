@@ -63,7 +63,7 @@ const planeGeometry = new THREE.PlaneGeometry(20, 20);
 const planeMaterial = new THREE.MeshLambertMaterial({ color: 0x00FF00 });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = -Math.PI / 2;
-plane.position.y = 0; // Keep the plane fixed at y = 0
+plane.position.y = -1; // Lower the plane to ensure molecules float above it
 plane.receiveShadow = true;
 scene.add(plane);
 
@@ -74,7 +74,7 @@ camera.position.set(0, 5, 10); // Adjust the camera position for a better view
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.target = moleculeGroup.position;
+controls.target.set(0, 2, 0); // Set target to the center of the molecule group
 
 // Animation loop
 function animate() {
