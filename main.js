@@ -69,7 +69,7 @@ scene.add(plane);
 
 // Position the camera closer to the molecules and a bit lower
 camera.position.set(0, 4, 8); // Adjust the camera position closer to the molecules and lower
-camera.lookAt(0, 4.5, 0); // Ensure the camera looks at the molecule group
+camera.lookAt(0, 3, 0); // Ensure the camera looks at the molecule group
 
 // Custom controls to rotate the molecule group when the mouse or touch moves
 let isInteracting = false;
