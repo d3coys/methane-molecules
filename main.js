@@ -21,7 +21,7 @@ scene.add(pointLight);
 
 // Group to hold the molecules
 const moleculeGroup = new THREE.Group();
-moleculeGroup.position.y = 5; // Raise the whole group higher above the plane
+moleculeGroup.position.y = 4.5; // Raise the whole group higher above the plane
 scene.add(moleculeGroup);
 
 // Create the carbon atom
