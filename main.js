@@ -24,6 +24,7 @@ const carbonGeometry = new THREE.SphereGeometry(1, 32, 32);
 const carbonMaterial = new THREE.MeshLambertMaterial({ color: 0xFF0000 });
 const carbon = new THREE.Mesh(carbonGeometry, carbonMaterial);
 carbon.castShadow = true;
+carbon.position.y = 1; // Raise carbon atom above the plane
 scene.add(carbon);
 
 // Create the hydrogen atoms and bonds
@@ -39,6 +40,7 @@ const hydrogenPositions = [
 hydrogenPositions.forEach(pos => {
     const hydrogen = new THREE.Mesh(hydrogenGeometry, hydrogenMaterial);
     hydrogen.position.set(...pos);
+    hydrogen.position.y += 1; // Raise hydrogen atom above the plane
     hydrogen.castShadow = true;
     scene.add(hydrogen);
 
@@ -58,12 +60,12 @@ const planeGeometry = new THREE.PlaneGeometry(20, 20);
 const planeMaterial = new THREE.MeshLambertMaterial({ color: 0x00FF00 });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = -Math.PI / 2;
-plane.position.y = -1.5; // Lowering the plane so the molecules are above it
+plane.position.y = -0.5; // Adjust plane to ensure molecules are above it
 plane.receiveShadow = true;
 scene.add(plane);
 
 // Position the camera
-camera.position.set(0, 3, 5); // Adjusted for better view of the molecule
+camera.position.set(0, 4, 7); // Adjusted for better view of the molecule
 
 // Orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
