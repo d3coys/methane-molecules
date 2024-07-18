@@ -21,7 +21,7 @@ scene.add(pointLight);
 
 // Group to hold the molecules
 const moleculeGroup = new THREE.Group();
-moleculeGroup.position.y = 2; // Raise the whole group above the plane
+moleculeGroup.position.y = 4; // Raise the whole group higher above the plane
 scene.add(moleculeGroup);
 
 // Create the carbon atom
@@ -63,18 +63,18 @@ const planeGeometry = new THREE.PlaneGeometry(20, 20);
 const planeMaterial = new THREE.MeshLambertMaterial({ color: 0x00FF00 });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = -Math.PI / 2;
-plane.position.y = -1; // Lower the plane to ensure molecules float above it
+plane.position.y = 0; // Keep the plane fixed at y = 0
 plane.receiveShadow = true;
 scene.add(plane);
 
 // Position the camera
-camera.position.set(0, 5, 10); // Adjust the camera position for a better view
+camera.position.set(0, 6, 12); // Adjust the camera position for a better view
 
 // Orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
-controls.target.set(0, 2, 0); // Set target to the center of the molecule group
+controls.target.set(0, 4, 0); // Set target to the center of the molecule group
 
 // Animation loop
 function animate() {
