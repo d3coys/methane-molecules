@@ -120,6 +120,10 @@ document.addEventListener('touchend', onPointerUp, false);
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
+    
+    // Rotate the molecule group for animation
+    moleculeGroup.rotation.y += 0.01;
+    
     renderer.render(scene, camera);
 }
 animate();
