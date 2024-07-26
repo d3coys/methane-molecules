@@ -35,14 +35,14 @@ scene.add(moleculeGroup);
 
 // Create the carbon atom
 const carbonGeometry = new THREE.SphereGeometry(1, 32, 32);
-const carbonMaterial = new THREE.MeshLambertMaterial({ color: 0xFF0000 });
+const carbonMaterial = new THREE.MeshPhongMaterial({ color: 0xFF0000, shininess: 100, emissive: 0x330000 });
 const carbon = new THREE.Mesh(carbonGeometry, carbonMaterial);
 carbon.castShadow = true;
 moleculeGroup.add(carbon);
 
 // Create the hydrogen atoms and bonds
 const hydrogenGeometry = new THREE.SphereGeometry(0.5, 32, 32);
-const hydrogenMaterial = new THREE.MeshLambertMaterial({ color: 0x0000FF });
+const hydrogenMaterial = new THREE.MeshPhongMaterial({ color: 0x0000FF, shininess: 100, emissive: 0x000033 });
 const hydrogenPositions = [
     [1.5, 1.5, 1.5],
     [-1.5, -1.5, 1.5],
@@ -57,7 +57,7 @@ hydrogenPositions.forEach(pos => {
     moleculeGroup.add(hydrogen);
 
     const bondGeometry = new THREE.CylinderGeometry(0.1, 0.1, 3, 32);
-    const bondMaterial = new THREE.MeshLambertMaterial({ color: 0xFFFFFF });
+    const bondMaterial = new THREE.MeshPhongMaterial({ color: 0xFFFFFF, shininess: 100, emissive: 0x333333 });
     const bond = new THREE.Mesh(bondGeometry, bondMaterial);
     
     bond.position.copy(carbon.position).add(new THREE.Vector3(...pos).multiplyScalar(0.5));
