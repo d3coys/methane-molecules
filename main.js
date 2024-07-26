@@ -84,11 +84,13 @@ camera.lookAt(0, 3, 0); // Ensure the camera looks at the molecule group
 let isInteracting = false;
 let prevX = 0;
 let prevY = 0;
+let isAnimating = true;
 
 function onPointerDown(event) {
     isInteracting = true;
     prevX = event.clientX || event.touches[0].clientX;
     prevY = event.clientY || event.touches[0].clientY;
+    isAnimating = false; // Stop animation on click
 }
 
 function onPointerMove(event) {
@@ -108,6 +110,15 @@ function onPointerMove(event) {
 
 function onPointerUp() {
     isInteracting = false;
+    isAnimating = true; // Resume animation on release
+}
+
+function onPointerOver() {
+    isAnimating = false; // Stop animation when mouse is over
+}
+
+function onPointerOut() {
+    isAnimating = true; // Resume animation when mouse is out
 }
 
 document.addEventListener('mousedown', onPointerDown, false);
@@ -116,13 +127,17 @@ document.addEventListener('mouseup', onPointerUp, false);
 document.addEventListener('touchstart', onPointerDown, false);
 document.addEventListener('touchmove', onPointerMove, false);
 document.addEventListener('touchend', onPointerUp, false);
+document.addEventListener('mouseover', onPointerOver, false);
+document.addEventListener('mouseout', onPointerOut, false);
 
 // Animation loop
 function animate() {
     requestAnimationFrame(animate);
     
-    // Rotate the molecule group for animation
-    moleculeGroup.rotation.y += 0.01;
+    // Rotate the molecule group for animation if not interacting
+    if (isAnimating) {
+        moleculeGroup.rotation.y += 0.01;
+    }
     
     renderer.render(scene, camera);
 }
